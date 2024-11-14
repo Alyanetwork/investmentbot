@@ -2,8 +2,9 @@
 
 class TradingViewChart
 {
-    public function getChartEmbedHtml($symbol, $width = 800, $height = 600)
+    public function getChartWithCustomIndicators($symbol, $indicators, $width = 800, $height = 600)
     {
+        $indicatorsJs = json_encode($indicators);
         $html = <<<HTML
             <div class="tradingview-widget-container">
                 <div id="tradingview_$symbol"></div>
@@ -21,6 +22,7 @@ class TradingViewChart
                         "toolbar_bg": "#f1f3f6",
                         "enable_publishing": false,
                         "allow_symbol_change": true,
+                        "studies": $indicatorsJs,
                         "container_id": "tradingview_$symbol"
                     });
                 </script>
@@ -30,4 +32,8 @@ class TradingViewChart
         return $html;
     }
 }
+
+// Örnek kullanım
+$chart = new TradingViewChart();
+echo $chart->getChartWithCustomIndicators("BTCUSD", ["RSI", "MACD"]);
 ?>
