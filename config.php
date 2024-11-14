@@ -1,5 +1,24 @@
 <?php
 
+return [
+    'binance_api_key' => getenv('BINANCE_API_KEY'),
+    'binance_api_secret' => getenv('BINANCE_API_SECRET'),
+    'coinbase_api_key' => getenv('COINBASE_API_KEY'),
+    'coinbase_api_secret' => getenv('COINBASE_API_SECRET'),
+    'coinbase_passphrase' => getenv('COINBASE_PASSPHRASE'),
+    'kraken_api_key' => getenv('KRAKEN_API_KEY'),
+    'kraken_api_secret' => getenv('KRAKEN_API_SECRET'),
+    'kucoin_api_key' => getenv('KUCOIN_API_KEY'),
+    'kucoin_api_secret' => getenv('KUCOIN_API_SECRET'),
+    'kucoin_passphrase' => getenv('KUCOIN_PASSPHRASE'),
+    'bitfinex_api_key' => getenv('BITFINEX_API_KEY'),
+    'bitfinex_api_secret' => getenv('BITFINEX_API_SECRET'),
+    'tradingview_api_url' => getenv('TRADINGVIEW_API_URL')
+];
+?>
+
+<?php
+
 /**
  * config.php
  * Bu dosya, çeşitli kripto borsalarına erişmek için gerekli olan API anahtarlarını ve diğer yapılandırma bilgilerini içerir.
