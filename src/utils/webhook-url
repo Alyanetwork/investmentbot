@@ -1,0 +1,27 @@
+<?php
+
+require_once __DIR__ . '/../utils/Webhook.php';
+require_once __DIR__ . '/../models/Database.php';
+
+function triggerWebhook($userId, $eventType, $eventData)
+{
+    $db = new Database();
+    $conn = $db->getConnection();
+    $stmt = $conn->prepare("SELECT webhook_url FROM webhook_settings WHERE user_id = ? AND event_type = ?");
+    $stmt->execute([$userId, $eventType]);
+    $webhook = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($webhook) {
+        Webhook::send($webhook['webhook_url'], $eventData);
+    }
+}
+
+// Örnek kullanım - Bir strateji sinyali tetiklendiğinde
+$eventData = [
+    'symbol' => 'BTCUSD',
+    'action' => 'buy',
+    'price' => 45000,
+    'timestamp' => date('Y-m-d H:i:s')
+];
+triggerWebhook($userId, 'trade_signal', $eventData);
+?>
