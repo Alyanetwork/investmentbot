@@ -1,0 +1,55 @@
+Proje Kurulum Dökümantasyonu
+Gereksinimler
+Projenin çalışması için aşağıdaki yazılımların sunucuda yüklü olması gerekmektedir:
+    1. PHP 7.4 veya üzeri
+    2. Composer (PHP bağımlılık yöneticisi)
+    3. MySQL veya PostgreSQL veritabanı
+    4. Node.js ve npm (JavaScript bağımlılıkları için)
+    5. Python 3.8+ ve pip (Python bağımlılıkları için)
+1. Laravel Projesini Kurun
+Yönetim paneli ve diğer işlevleri içeren Laravel projesini kurmak için Composer kullanın:
+    composer create-project --prefer-dist laravel/laravel AdminPanel
+    cd AdminPanel
+2. Proje Bağımlılıklarını Yükleyin
+Laravel’in proje bağımlılıklarını kurun:
+    composer install
+3. Çevre Dosyasını Ayarlayın
+Proje ana dizinindeki .env.example dosyasını .env olarak kopyalayın ve veritabanı bilgilerinizi girin:
+    cp .env.example .env
+    .env dosyasındaki APP_KEY’i oluşturmak için:
+    php artisan key:generate
+4. Veritabanını Hazırlayın
+Veritabanını oluşturun ve Laravel migrations çalıştırarak gerekli tabloları oluşturun:
+    php artisan migrate
+5. Kullanıcı Yetkilendirme Ayarları
+Laravel’de yönetim paneli ve kullanıcı yetkilendirmesi için aşağıdaki komutları çalıştırarak kimlik doğrulama sistemini etkinleştirin:
+    php artisan make:auth
+6. JavaScript ve CSS Bağımlılıklarını Yükleyin
+Proje içindeki ön uç bağımlılıklarını yüklemek için npm komutlarını çalıştırın:
+    npm install
+    npm run dev
+7. Python Bağımlılıklarını Yükleyin
+Makine öğrenimi ve tahmin modelleri için gereken Python bağımlılıklarını kurmak için:
+    pip install -r requirements.txt
+8. WebSocket Sunucusu Kurulumu
+Gerçek zamanlı bildirimler için WebSocket sunucusu kurmamız gerekiyor. PHP için Ratchet kütüphanesini kullanarak sunucuyu çalıştıracağız.
+    composer require cboden/ratchet
+    php src/server/WebSocketServer.php
+9. Yönetim Paneli Kullanıcı Arayüzünü Hazırlayın
+AdminController ve admin rotaları oluşturulduktan sonra, Laravel Blade şablonları aracılığıyla yönetim paneli arayüzünü oluşturun.
+10. Veri Görselleştirme
+Dashboard’da verileri göstermek için Chart.js veya Laravel Charts gibi bir kütüphane kullanarak verileri grafiklerle gösterebilirsiniz.
+11. Güvenlik Ayarları ve İki Aşamalı Doğrulama
+Kullanıcı güvenliğini artırmak için iki aşamalı doğrulama entegrasyonu ekleyebilirsiniz. Laravel için `laravel/fortify` veya `laravel/jetstream` kullanılabilir.
+12. Makine Öğrenimi Modellerini Entegre Edin
+Python'da geliştirdiğiniz tahmin ve analiz dosyalarını PHP'den çalıştırmak için:
+    shell_exec('python3 src/ai_models/price_prediction.py');
+13. Son Testler ve Güvenlik Kontrolleri
+Tüm kurulum adımlarını tamamladıktan sonra, veritabanı bağlantıları, kullanıcı oturumu, tahmin modelleri, gerçek zamanlı bildirimler ve yönetim paneli işlevselliğini gözden geçirin.
+14. Projeyi Yayınlama
+Son olarak, projeyi canlı bir sunucuya veya bulut platformuna (AWS, DigitalOcean, Heroku) yükleyin:
+    1. Dosyaları Sunucuya Yükleyin.
+    2. Veritabanı Bağlantılarını Ayarlayın.
+    3. SSL Sertifikası Ekleyin.
+    4. Crontab ve Zamanlanmış Görevler.
+    
