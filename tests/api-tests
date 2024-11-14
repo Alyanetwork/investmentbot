@@ -1,0 +1,6 @@
+for ($i = 0; $i < 100; $i++) {
+    echo "Test $i\n";
+    $data = $binance->getMarketData("BTCUSDT");
+    echo "Fiyat: " . $data['price'] . "\n";
+    sleep(1); // API limitine takılmamak için 1 saniye aralıklarla
+}
